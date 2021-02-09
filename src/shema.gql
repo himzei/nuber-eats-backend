@@ -5,10 +5,8 @@
 type Restaurant {
   id: Float!
   name: String!
-  isVegan: Boolean!
+  isVegan: Boolean
   address: String!
-  ownersName: String!
-  categoryName: String!
 }
 
 type Query {
@@ -16,5 +14,23 @@ type Query {
 }
 
 type Mutation {
-  createRestaurant(name: String!, isVegan: Boolean!, address: String!, ownersName: String!): Boolean!
+  createRestaurant(input: CreateRestaurantDto!): Boolean!
+  updateRestaurant(input: UpdateRestaurantDto!): Boolean!
+}
+
+input CreateRestaurantDto {
+  name: String!
+  isVegan: Boolean
+  address: String = "강남"
+}
+
+input UpdateRestaurantDto {
+  id: Float!
+  data: UpdateRestaurantInputType!
+}
+
+input UpdateRestaurantInputType {
+  name: String
+  isVegan: Boolean
+  address: String = "강남"
 }
